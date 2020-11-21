@@ -45,8 +45,10 @@ void main() {
     pthread_t thread2;
   
  
-    sem_open(&semaphore1, 0, 0);
-    sem_open(&semaphore2, 0, 0);
+    char lpsz_sem1[] = "/000";
+    char lpsz_sem2[] = "/111";
+    semaphore1 = sem_open(lpsz_sem1, O_CREAT | O_EXCL, 0777, 1);
+    semaphore2 = sem_open(lpsz_sem2, O_CREAT | O_EXCL, 0777, 1);
      
     pthread_create(&thread1, NULL, worker1, NULL);
     pthread_create(&thread2, NULL, worker2, NULL);
