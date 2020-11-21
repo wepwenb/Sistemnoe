@@ -10,7 +10,8 @@ sem_t semaphore1;
 sem_t semaphore2;
  
 static int counter = 0;
- 
+ FILE *f;
+string a;
 
  
 void* worker1(void* args) {
@@ -19,7 +20,10 @@ void* worker1(void* args) {
     for (i = 0; i < 10; i++) {
         sem_wait(&semaphore1);
         local = counter;
-        printf("worker1 - %d\n", local);
+		f = fopen("file.txt","w");
+		ofstream fout ("file.txt"); 
+		fout << "worker 1 - %d\n", local";
+		fclose(f);
         local++;
         counter = local;
         Sleep(10);
@@ -33,7 +37,10 @@ void* worker2(void* args) {
     for (i = 0; i < 10; i++) {
         sem_wait(&semaphore2);
         local = counter;
-        printf("worker 2 - %d\n", local);
+        	f = fopen("file.txt","w");
+		ofstream fout ("file.txt"); 
+		fout << "worker 2 - %d\n", local";
+		fclose(f);
         local--;
         counter = local;
         Sleep(10);
