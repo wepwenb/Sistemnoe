@@ -63,8 +63,8 @@ void main() {
  
     pthread_join(thread1, NULL);
     pthread_join(thread2, NULL);
+  sem_unlink(const char *000);
+  sem_unlink(const char *111);
  
-    sem_destroy(&semaphore1);
-    sem_destroy(&semaphore2);
     wait();
 }
